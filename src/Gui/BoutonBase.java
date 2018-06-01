@@ -27,7 +27,7 @@ public class BoutonBase extends JButton {
 
 	/**
 	 * Constructeur par défaut
-	 * @author Audrey
+	 * @author Jonas
 	 */
 	public BoutonBase() 
 	{
@@ -49,7 +49,7 @@ public class BoutonBase extends JButton {
 	/**
 	 * Bouton transparent
 	 * @param image
-	 * @author Audrey
+	 * @author Jonas
 	 */
 	public BoutonBase(ImageIcon image) 
 	{
@@ -225,7 +225,7 @@ public class BoutonBase extends JButton {
 	}
 	/**
 	 * Listener du hover sur les boutons
-	 * @author Rafael Peixoto
+	 * @author Jonas
 	 *
 	 */
 
