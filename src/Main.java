@@ -1,3 +1,5 @@
+import Vue.MaFenetre;
+
 /*
 * Main.java
 * Auteur : Jonas Pilloud
