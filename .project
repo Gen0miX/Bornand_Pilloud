@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>photo</name>
+			<type>2</type>
+			<location>C:/Users/Jonas/eclipse-workspace/BornandPilloud/Bornand_Pilloud/photo</location>
+		</link>
+	</linkedResources>
 </projectDescription>
