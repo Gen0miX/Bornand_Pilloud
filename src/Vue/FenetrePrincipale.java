@@ -9,18 +9,26 @@ package Vue;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.Timer;
+
 import Gui.PanelImage;
 import Gui.PanelVerrouillage;
 
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 
 
@@ -32,6 +40,8 @@ public class FenetrePrincipale extends JFrame {
 	private PanelImage PanelPrinc = new PanelImage(new ImageIcon("photo/BG/fondEcran.png"));
 	//Panel verrouillage
 	private PanelVerrouillage verrouPanel = new PanelVerrouillage();
+	// Panel de statut (heure, date, batterie)
+		private JPanel panelStatus = new JPanel();
 	
 	//Gestion panel
 	private CardLayout cardLayout = new CardLayout();
@@ -40,10 +50,21 @@ public class FenetrePrincipale extends JFrame {
 	private JPanel PanelApplication = new JPanel(new GridBagLayout());
 	private GridBagConstraints c = new GridBagConstraints();
 	
+	//Heure
+		private JLabel heure = new JLabel();
+		final private DateFormat DATEFORMAT = new SimpleDateFormat("HH:mm");
+		private Timer timer = new Timer(0, new CurrentTime());
+	
 	// Verrou
 		private boolean lock = true;
 	
 	public FenetrePrincipale() {
+		
+		// Heure
+		timer.start();
+		panelStatus.add(heure);
+		heure.setForeground(Color.WHITE);
+		heure.setPreferredSize(new Dimension(31, 45));
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(480, 860);
@@ -111,6 +132,15 @@ public class FenetrePrincipale extends JFrame {
 	{
 		return contentPanel;
 	}
-
+	
+	class CurrentTime implements ActionListener 
+	{
+		@Override
+		public void actionPerformed(ActionEvent e) 
+		{
+			Calendar now = Calendar.getInstance();
+			heure.setText(DATEFORMAT.format(now.getTime()));
+		}
+	}
 
 }
