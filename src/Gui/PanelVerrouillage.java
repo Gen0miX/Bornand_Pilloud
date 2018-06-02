@@ -50,7 +50,6 @@ public class PanelVerrouillage extends JPanel {
 	final private DateFormat DATEFORMATDATE = new SimpleDateFormat("EEEE dd MMM");
 	private Timer timerDate = new Timer(0, new CurrentDate());
 	
-	//ajout nouvelle police
 	
 	
 	public PanelVerrouillage() 
@@ -75,14 +74,14 @@ public class PanelVerrouillage extends JPanel {
 		panelBorder.add(heure, BorderLayout.NORTH);
 		heure.setHorizontalAlignment(JLabel.CENTER);
 		heure.setForeground(Color.WHITE);
-        heure.setFont(new Font("Montserrat", Font.BOLD, 70));
+        heure.setFont(new Font("Arial", Font.BOLD, 70));
 	
 		// Date
 		timerDate.start();
 		panelBorder.add(date, BorderLayout.SOUTH);
 		date.setHorizontalAlignment(JLabel.CENTER);
 		date.setForeground(Color.WHITE);
-		date.setFont(new Font("Montserrat", Font.BOLD, 30));
+		date.setFont(new Font("Arial", Font.BOLD, 30));
 	}
 
 	public BoutonBase getVerrou() 
