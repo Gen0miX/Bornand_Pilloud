@@ -42,7 +42,7 @@ public class FenetrePrincipale extends JFrame {
 	private Accueil PanelPrinc = new Accueil(new ImageIcon("photo/BG/fondEcran.png"));
 	//Panel verrouillage
 	private PanelVerrouillage verrouPanel = new PanelVerrouillage();
-	// Panel de statut (heure, date, batterie)
+	// Panel de statut (réseau, heure, batterie)
 	private PanelStatus panelStatus = new PanelStatus();
 	
 	// Panel du bouton home
