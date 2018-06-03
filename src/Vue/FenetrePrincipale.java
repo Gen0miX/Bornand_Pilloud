@@ -89,19 +89,19 @@ public class FenetrePrincipale extends JFrame {
 		
 		
 			
-				// Panel du bouton home
-				panelTel.add(homePanel, BorderLayout.SOUTH);
-				homePanel.setOpaque(false);
-				homePanel.setPreferredSize(new Dimension(480, 60));
-				homePanel.add(home);
-				home.setBorderPainted(false);
-				home.setPreferredSize(new Dimension(50, 50));
-				home.addActionListener(new HomeClick());
+		// Panel du bouton home
+		panelTel.add(homePanel, BorderLayout.SOUTH);
+		homePanel.setOpaque(false);
+		homePanel.setPreferredSize(new Dimension(480, 60));
+		homePanel.add(home);
+		home.setBorderPainted(false);
+		home.setPreferredSize(new Dimension(50, 50));
+		home.addActionListener(new HomeClick());
 				
-				// Panel de status
-				panelTel.add(panelStatus, BorderLayout.NORTH);
-				panelStatus.setOpaque(false);
-				panelStatus.setPreferredSize(new Dimension(480, 55));
+		// Panel de status
+		panelTel.add(panelStatus, BorderLayout.NORTH);
+		panelStatus.setOpaque(false);
+		panelStatus.setPreferredSize(new Dimension(480, 55));
 		
 	}
 	
@@ -155,9 +155,16 @@ public class FenetrePrincipale extends JFrame {
 		{
 //			photoApp.serializeObject();
 //			contactApp.serializeObject();
-//			musiqueApp.serializeObject();
 			dispose();
 			System.exit(0);
+		}
+	}
+	class ClickContact implements ActionListener 
+	{
+		@Override
+		public void actionPerformed(ActionEvent e) 
+		{
+			cardLayout.show(panelContenu, "ContactApp");
 		}
 	}
 

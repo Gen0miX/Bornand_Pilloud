@@ -31,7 +31,7 @@ public class Contact implements Serializable {
 	 * @param telephone
 	 * @param adresse
 	 * @param mail
-	 * @author Audrey
+	 * @author Jonas
 	 */
 	public Contact(int ID, String prenom, String nom, String telephone, String adresse, String mail)
 	{	
@@ -52,7 +52,7 @@ public class Contact implements Serializable {
 	 * @param adresse
 	 * @param mail
 	 * @param photo
-	 * @author Audrey
+	 * @author Jonas
 	 */
 	public Contact(int ID, String prenom, String nom, String telephone, String adresse, String mail, Images photo)
 	{	
