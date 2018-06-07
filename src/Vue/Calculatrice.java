@@ -1,7 +1,7 @@
 /*
 * Calculatrice.java
 *Auteur : Mathias Bornand
-*Date de création : 2 juin 2018
+*Date de crÃ©ation : 2 juin 2018
 */
 
 
@@ -20,11 +20,13 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Calculatrice extends JFrame {
+
+
+public class Calculatrice extends JPanel {
 	  private JPanel container = new JPanel();
-	  //Tableau stockant les éléments à afficher dans la calculatrice
+	  //Tableau stockant les Ã©lÃ©ments Ã  afficher dans la calculatrice
 	  String[] tab_string = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ".", "=", "C", "+", "-", "*", "/"};
-	  //Un bouton par élément à afficher
+	  //Un bouton par Ã©lÃ©ment Ã  afficher
 	  JButton[] tab_button = new JButton[tab_string.length];
 	  private JLabel ecran = new JLabel();
 	  private Dimension dim = new Dimension(50, 40);
@@ -34,24 +36,24 @@ public class Calculatrice extends JFrame {
 	  private String operateur = "";
 	  
 	  public Calculatrice(){
-	    this.setSize(240, 260);
-	    this.setTitle("Calculette");
-	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    this.setLocationRelativeTo(null);
-	    this.setResizable(false);
+	    this.setSize(460, 300);
+//	    this.setTitle("Calculette");
+//	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//	    this.setLocationRelativeTo(null);
+//	    this.setResizable(true);
 	    //On initialise le conteneur avec tous les composants
 		  initComposant();
 		  //On ajoute le conteneur
-	    this.setContentPane(container);
+	    //this.setContentPane(container);
 	    this.setVisible(true);
 	  }
 	      
 	  private void initComposant(){
-	    //On définit la police d'écriture à utiliser
+	    //On dÃ©finit la police d'Ã©criture Ã  utiliser
 	    Font police = new Font("Arial", Font.BOLD, 20);
 	    ecran = new JLabel("0");
 	    ecran.setFont(police);
-	    //On aligne les informations à droite dans le JLabel
+	    //On aligne les informations Ã  droite dans le JLabel
 	    ecran.setHorizontalAlignment(JLabel.RIGHT);
 	    ecran.setPreferredSize(new Dimension(220, 20));
 	    JPanel operateur = new JPanel();      
@@ -61,15 +63,15 @@ public class Calculatrice extends JFrame {
 	    JPanel panEcran = new JPanel();
 	    panEcran.setPreferredSize(new Dimension(220, 30));
 
-	    //On parcourt le tableau initialisé
-	    //afin de créer nos boutons
+	    //On parcourt le tableau initialisÃ©
+	    //afin de crÃ©er nos boutons
 	    for(int i = 0; i < tab_string.length; i++){
 	      tab_button[i] = new JButton(tab_string[i]);
 	      tab_button[i].setPreferredSize(dim);
 	      switch(i){
-	        //Pour chaque élément situé à la fin du tableau
+	        //Pour chaque Ã©lÃ©ment situÃ© Ã  la fin du tableau
 	        //et qui n'est pas un chiffre
-	        //on définit le comportement à avoir grâce à un listener
+	        //on dÃ©finit le comportement Ã  avoir grÃ¢ce Ã  un listener
 	        case 11 :
 	          tab_button[i].addActionListener(new EgalListener());
 	          chiffre.add(tab_button[i]);
@@ -100,7 +102,7 @@ public class Calculatrice extends JFrame {
 	          operateur.add(tab_button[i]);
 	          break;
 	        default :
-	          //Par défaut, ce sont les premiers éléments du tableau
+	          //Par dÃ©faut, ce sont les premiers Ã©lÃ©ments du tableau
 	          //donc des chiffres, on affecte alors le bon listener
 	          chiffre.add(tab_button[i]);
 	          tab_button[i].addActionListener(new ChiffreListener());
@@ -114,7 +116,7 @@ public class Calculatrice extends JFrame {
 	    container.add(operateur, BorderLayout.EAST);
 	  }
 
-	  //Méthode permettant d'effectuer un calcul selon l'opérateur sélectionné
+	  //MÃ©thode permettant d'effectuer un calcul selon l'opÃ©rateur sÃ©lectionnÃ©
 	  private void calcul(){
 	    if(operateur.equals("+")){
 	      chiffre1 = chiffre1 + 
@@ -142,7 +144,7 @@ public class Calculatrice extends JFrame {
 	    }
 	  }
 
-	  //Listener utilisé pour les chiffres
+	  //Listener utilisÃ© pour les chiffres
 	  //Permet de stocker les chiffres et de les afficher
 	  class ChiffreListener implements ActionListener {
 	    public void actionPerformed(ActionEvent e){
@@ -159,7 +161,7 @@ public class Calculatrice extends JFrame {
 	    }
 	  }
 
-	  //Listener affecté au bouton =
+	  //Listener affectÃ© au bouton =
 	  class EgalListener implements ActionListener {
 	    public void actionPerformed(ActionEvent arg0){
 	      calcul();
@@ -168,7 +170,7 @@ public class Calculatrice extends JFrame {
 	    }
 	  }
 
-	  //Listener affecté au bouton +
+	  //Listener affectÃ© au bouton +
 	  class PlusListener implements ActionListener {
 	    public void actionPerformed(ActionEvent arg0){
 	      if(clicOperateur){
@@ -184,7 +186,7 @@ public class Calculatrice extends JFrame {
 	    }
 	  }
 
-	  //Listener affecté au bouton -
+	  //Listener affectÃ© au bouton -
 	  class MoinsListener implements ActionListener {
 	    public void actionPerformed(ActionEvent arg0){
 	      if(clicOperateur){
@@ -200,7 +202,7 @@ public class Calculatrice extends JFrame {
 	    }
 	  }
 
-	  //Listener affecté au bouton *
+	  //Listener affectÃ© au bouton *
 	  class MultiListener implements ActionListener {
 	    public void actionPerformed(ActionEvent arg0){
 	      if(clicOperateur){
@@ -216,7 +218,7 @@ public class Calculatrice extends JFrame {
 	    }
 	  }
 
-	  //Listener affecté au bouton /
+	  //Listener affectÃ© au bouton /
 	  class DivListener implements ActionListener {
 	    public void actionPerformed(ActionEvent arg0){
 	      if(clicOperateur){
@@ -232,7 +234,7 @@ public class Calculatrice extends JFrame {
 	    }
 	  }
 
-	  //Listener affecté au bouton de remise à zéro
+	  //Listener affectÃ© au bouton de remise Ã  zÃ©ro
 	  class ResetListener implements ActionListener {
 	    public void actionPerformed(ActionEvent arg0){
 	      clicOperateur = false;
@@ -241,5 +243,8 @@ public class Calculatrice extends JFrame {
 	      operateur = "";
 	      ecran.setText("");
 	    }
-	  }      
+	  }  
+	 
 	}
+
+
