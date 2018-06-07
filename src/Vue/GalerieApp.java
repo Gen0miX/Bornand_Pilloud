@@ -21,8 +21,6 @@ public class GalerieApp extends JPanel{
 
 	private BoutonBase imgall [] ;
 
-	private File dirImg = new File("photo/ImageGal");
-	private int count = dirImg.list().length ;
 
 	public GalerieApp() {
 		setLayout(new BorderLayout());
@@ -39,10 +37,7 @@ public class GalerieApp extends JPanel{
 			flowL.setHgap(35);
 			flowL.setAlignment(FlowLayout.LEFT);
 			this.setLayout(flowL);
-			
-			for(int i = 0 ; i != count ; i++) {
-				
-			}
+		
 		}
 		
 	}
