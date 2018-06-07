@@ -1,8 +1,8 @@
 /*
-* Accueil.java
-* Auteur : Jonas Pilloud
-* Date de création : 2 juin 2018
-*/
+ * Accueil.java
+ * Auteur : Jonas Pilloud
+ * Date de crÃ©ation : 2 juin 2018
+ */
 
 package Vue;
 
@@ -21,12 +21,16 @@ import Gui.PanelImage;
 
 
 public class Accueil extends PanelImage {
-	
+
+
 	private ImageIcon background ;
 
 	private BoutonBase verrouiller = new BoutonBase(new ImageIcon("photo/Icones/verrouiller.png"));
 	private BoutonBase exit = new BoutonBase(new ImageIcon("photo/Icones/sortie.png")) ;
-	
+	private BoutonBase imageGal = new BoutonBase(new ImageIcon("photo/Icones/imageGal.png")) ;
+	private BoutonBase contact = new BoutonBase(new ImageIcon("photo/Icones/Contact.png"));
+	private BoutonBase calculatrice = new BoutonBase(new ImageIcon("photo/Icones/Calculatrice.png"));
+
 	public Accueil(ImageIcon bg) {
 		super(bg);
 		setLayout(new BorderLayout());
@@ -36,19 +40,23 @@ public class Accueil extends PanelImage {
 	}
 
 	private class FondPanel extends JPanel {
+
 		private FlowLayout flow = new FlowLayout();
 		private Color bg = new Color(0, 0, 0, 200) ;
-		
+
+
+
 		public FondPanel() {
 			super() ;
 			flow.setHgap(40);
 			flow.setVgap(20);
 			this.setLayout(flow);
-			this.add(new BoutonBase(new ImageIcon("photo/Icones/imageGal.png"))) ;
-			this.add(new BoutonBase(new ImageIcon("photo/Icones/Contact.png"))) ;
-			this.add(new BoutonBase(new ImageIcon("photo/Icones/Calculatrice.png"))) ;
+			this.add(imageGal) ;
+			this.add(contact) ;
+			this.add(calculatrice) ;
 			this.setBackground(bg) ;
 		}
+
 	}
 	private class CentrePanel extends JPanel {
 		public CentrePanel() {
@@ -63,7 +71,17 @@ public class Accueil extends PanelImage {
 			this.setCursor(new Cursor(Cursor.HAND_CURSOR));
 		}
 	}
-	
+	public BoutonBase getImageGal() {
+		return imageGal;
+	}
+
+	public BoutonBase getContact() {
+		return contact;
+	}
+
+	public BoutonBase getCalculatrice() {
+		return calculatrice;
+	}
 	public BoutonBase getVerrouiller() {
 		return verrouiller;
 	}
@@ -71,5 +89,5 @@ public class Accueil extends PanelImage {
 	public BoutonBase getExit() {
 		return exit;
 	}
-	
+
 }
