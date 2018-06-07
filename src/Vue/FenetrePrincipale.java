@@ -1,7 +1,7 @@
 /*
 * MaFenetre.java
 * Auteur : Jonas Pilloud
-* Date de création : 25 mai 2018
+* Date de crÃ©ation : 25 mai 2018
 */
 
 package Vue;
@@ -36,23 +36,25 @@ import java.util.Calendar;
 
 public class FenetrePrincipale extends JFrame {
 	
-	//panel téléphone
+	//panel tÃ©lÃ©phone
 	private PanelImage panelTel = new PanelImage(new ImageIcon("photo/BG/formeSmartphone.png")) ;
 	// Panel principal
-	private Accueil PanelPrinc = new Accueil(new ImageIcon("photo/BG/fondEcran.png"));
+	private Accueil panelPrinc = new Accueil(new ImageIcon("photo/BG/fondEcran.png"));
 	//Panel verrouillage
 	private PanelVerrouillage verrouPanel = new PanelVerrouillage();
-	// Panel de statut (réseau, heure, batterie)
+	// Panel de statut (rÃ©seau, heure, batterie)
 	private PanelStatus panelStatus = new PanelStatus();
 	
 	// Panel du bouton home
 	private JPanel homePanel = new JPanel();
 	
+	
+	private Calculatrice calculette = new Calculatrice() ;
+	
 	//Gestion panel
 	private CardLayout cardLayout = new CardLayout();
 	private JPanel panelContenu = new JPanel(cardLayout);
 	
-	private JPanel PanelApplication = new JPanel(new GridBagLayout());
 	private GridBagConstraints c = new GridBagConstraints();
 	
 
@@ -82,11 +84,13 @@ public class FenetrePrincipale extends JFrame {
 		panelContenu.add(verrouPanel, "Verrou");
 		verrouPanel.getVerrou().addActionListener(new UnlockClick());
 		
-		panelContenu.add(PanelPrinc, "PanelPrincipal");
-		PanelPrinc.getVerrouiller().addActionListener(new ExitClick());
+		panelContenu.add(panelPrinc, "PanelPrincipal");
+		panelPrinc.getVerrouiller().addActionListener(new ExitClick());
 		
-		PanelPrinc.getExit().addActionListener(new OffClick());
+		panelPrinc.getExit().addActionListener(new OffClick());
 		
+		panelContenu.add(calculette, "Calculatrice");
+		panelPrinc.getCalculatrice().addActionListener(new ClickCalculator());
 		
 			
 		// Panel du bouton home
@@ -167,5 +171,13 @@ public class FenetrePrincipale extends JFrame {
 			cardLayout.show(panelContenu, "ContactApp");
 		}
 	}
-
+	class ClickCalculator implements ActionListener 
+	{
+		@Override
+		public void actionPerformed(ActionEvent e) 
+		{
+			cardLayout.show(panelContenu, "Calculatrice");
+		}
+	}
+	
 }
