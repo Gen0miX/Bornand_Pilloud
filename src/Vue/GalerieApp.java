@@ -21,8 +21,8 @@ public class GalerieApp extends JPanel{
 
 	private BoutonBase imgall [] ;
 
-	private  static File img = new File("photo/ImageGal");
-	private static int count = img.list().length ;
+	private File dirImg = new File("photo/ImageGal");
+	private int count = dirImg.list().length ;
 
 	public GalerieApp() {
 		setLayout(new BorderLayout());
@@ -41,15 +41,10 @@ public class GalerieApp extends JPanel{
 			this.setLayout(flowL);
 			
 			for(int i = 0 ; i != count ; i++) {
-				this.add(imgall [i] = new BoutonBase(new ImageIcon("photo/ImageGal/photo"+i+".png"),50,50));
+				
 			}
 		}
 		
-	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
 	}
 
 }
