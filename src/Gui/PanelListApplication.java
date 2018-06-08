@@ -9,11 +9,12 @@ package Gui;
 import java.awt.Color;
 
 import javax.swing.ImageIcon;
+import javax.swing.border.EmptyBorder;
 
 public class PanelListApplication extends InterfaceApplication {
 
 	private BoutonBase ajout = new BoutonBase(new ImageIcon("photo/Icones/ajout.png")) ;
-	private BoutonBase retour = new BoutonBase(new ImageIcon("photo/Icones/back.png")) ;
+	private BoutonBase retour = new BoutonBase(new ImageIcon("photo/Icones/retour.png")) ;
 		
 	public PanelListApplication(String NomPanel, Color couleurPan) {
 		super(NomPanel, couleurPan);
