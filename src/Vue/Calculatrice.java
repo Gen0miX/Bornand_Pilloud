@@ -62,12 +62,7 @@ public class Calculatrice extends JPanel {
 			
 			ecran.setPreferredSize(new Dimension(400, 100));
 			ecran.setBackground(new Color(0,103,54));
-			
-			
-			//			flow.setHgap(0);
-			//			flow.setVgap(0);
-
-
+		
 			this.setLayout(flow);
 			this.setPreferredSize(new Dimension(400, 100));
 			this.add(ecran);
