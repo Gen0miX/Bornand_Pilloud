@@ -19,10 +19,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -35,51 +38,46 @@ public class GalerieApp extends JPanel{
 
 	private ArrayList<Images> imgall = new ArrayList<Images>() ;
 	
-	private CardLayout cardlayImg = new CardLayout();
-	private JPanel contenuPimg = new JPanel(cardlayImg);
+	private JScrollPane scroll ;
+	private JPanel centrePan, centrecentrePane ;
 	
 
 	public GalerieApp() {
 		setLayout(new BorderLayout());
-		add(new TopGalerie(), BorderLayout.NORTH) ;
+//		add(new TopGalerie(), BorderLayout.NORTH) ;
 		add(new CentreGalerie(), BorderLayout.CENTER);
-		
-		
-		
 		setVisible(true) ;
 	}
 
 
 	 class CentreGalerie extends JPanel {
-		
-		private JPanel gridPanel = new JPanel(new GridLayout(0, 3, 7, 7));
-		private JPanel photoListe = new JPanel(); // pour le scroll
-		
-		private JFileChooser choix = new JFileChooser();
-		private FileFilter filtreImage = new FileNameExtensionFilter("Image Files","jpg", "png", "gif", "jpeg");
-		
+	
 		public CentreGalerie(){
+			centrePan = this ;
+			this.setLayout(new BorderLayout());
+			this.setBackground(Color.GRAY.brighter());
+			centrecentrePane = new CentreCentreGalerie();
 			
-		
-			
-			photoListe.setLayout(new FlowLayout());
-			photoListe.add(gridPanel);
-			photoListe.setBackground(new Color(0,103,56));
-			
-			gridPanel.setAlignmentX(CENTER_ALIGNMENT);
-			gridPanel.setOpaque(false);
-			
-			
-			//ActionListener a ajouter
-			
-			
-			choix.setDialogTitle("Ajouter une image");
-			choix.setApproveButtonText("Ajouter");
-			choix.addChoosableFileFilter(filtreImage);
-			choix.setAcceptAllFileFilterUsed(false);
-			choix.setFileFilter(filtreImage);
+			scroll =  new JScrollPane() ;
+			scroll.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.BLACK));
+			//actualiseImage();
+			this.add(new TopGalerie(), BorderLayout.NORTH);
+			this.add(scroll, BorderLayout.WEST) ;
 			
 		}	
+	}
+	
+	class CentreCentreGalerie extends JPanel{
+		
+		public CentreCentreGalerie() {
+			centrecentrePane = this ;
+			this.setBackground(Color.GRAY.brighter());
+			FlowLayout flow = new FlowLayout();
+			flow.setAlignment(FlowLayout.LEFT);
+			flow.setHgap(10);
+			flow.setVgap(10);
+			this.setLayout(flow);
+		}
 	}
 	 
 	 class TopGalerie extends JPanel{
@@ -129,5 +127,18 @@ public class GalerieApp extends JPanel{
 			}
 			
 		}
+	 
+	 class BoutonImage extends JButton {
+		 
+		 private Images photo ;
+		 private ImageIcon icon ;
+		 
+		 public BoutonImage(String path) {
+			 icon = new ImageIcon(path);
+			 icon.;
+			 this.setIcon(new ImageIcon);
+		 }
+		 
+	 }
 
 }
