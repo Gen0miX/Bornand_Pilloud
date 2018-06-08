@@ -12,6 +12,7 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -128,15 +129,10 @@ public class GalerieApp extends JPanel{
 			
 		}
 	 
-	 class BoutonImage extends JButton {
+	 class BoutonImage extends BoutonBase {
 		 
-		 private Images photo ;
-		 private ImageIcon icon ;
-		 
-		 public BoutonImage(String path) {
-			 icon = new ImageIcon(path);
-			 icon.;
-			 this.setIcon(new ImageIcon);
+		 public BoutonImage(ImageIcon image, int width, int height) {
+			
 		 }
 		 
 	 }
