@@ -52,22 +52,22 @@ public class Calculatrice extends JPanel {
 		//private Color bg = new Color(0, 0, 0, 200);
 
 		public TopPanel() {
-			
+
 			//On definit la police d'ecriture a utiliser
 			Font police = new Font("Arial", Font.BOLD, 54);
 			ecran = new JLabel("0");
 			ecran.setFont(police);
 			//On aligne les informations a  droite dans le JLabel
 			ecran.setHorizontalAlignment(JLabel.RIGHT);
-			
+
 			ecran.setPreferredSize(new Dimension(400, 150));
 			//ecran.setBackground(new Color(0,103,54));
-		
+
 			this.setLayout(flow);
 			this.setPreferredSize(new Dimension(400, 150));
 			this.add(ecran);
 			this.setBorder(BorderFactory.createLineBorder(Color.black));
-			
+
 		}
 
 	}
@@ -77,11 +77,11 @@ public class Calculatrice extends JPanel {
 
 		public CenterPanel() {
 
-			
+
 			Font police = new Font("Arial", Font.BOLD, 44);
 			this.setLayout(grid);
-			//this.setPreferredSize(dim2);
-			
+			//this.setPreferredSize(dim);
+
 			for(int i = 0; i <= 11 ; i++){
 				tab_button[i] = new JButton(tab_string[i]);
 				tab_button[i].setForeground(Color.WHITE);
@@ -109,7 +109,7 @@ public class Calculatrice extends JPanel {
 		private GridLayout grid = new GridLayout(4,1);
 
 		public SidePanel() {
-			
+
 			Font police = new Font("Arial", Font.BOLD, 44);
 			this.setLayout(grid);
 			this.setPreferredSize(dim2);
@@ -117,7 +117,6 @@ public class Calculatrice extends JPanel {
 
 			for(int i = 12; i < tab_string.length  ; i++){
 				tab_button[i] = new JButton(tab_string[i]);
-				//tab_button[i].setPreferredSize(dim2); //COMM. A EFFACER (dim ou dim2 pas pris en compte ?!)
 				tab_button[i].setBackground(Color.LIGHT_GRAY);
 				tab_button[i].setFont(police);
 				switch(i){
@@ -125,34 +124,29 @@ public class Calculatrice extends JPanel {
 					tab_button[i].addActionListener(new PlusListener());
 					this.add(tab_button[i]);
 					break;
-				
 				case 13 :
 					tab_button[i].addActionListener(new MoinsListener());
-					//tab_button[i].setPreferredSize(dim2);
 					this.add(tab_button[i]);
 					break;
 				case 14 :
 					tab_button[i].addActionListener(new MultiListener());
-					//tab_button[i].setPreferredSize(dim2);
 					this.add(tab_button[i]);
 					break;	
 				case 15 :	
 					tab_button[i].addActionListener(new DivListener());
-					//tab_button[i].setPreferredSize(dim2);
 					this.add(tab_button[i]);
 					break;
 				case 16 :
 					tab_button[i].addActionListener(new EgalListener());
-					//tab_button[i].setPreferredSize(dim2);
 					tab_button[i].setBackground(Color.orange);
 					this.add(tab_button[i]);
 					break;
 				}
 			}
 		}	
-		
+
 	}
-	
+
 	//Methode permettant d'effectuer un calcul selon l'operateur selectionne
 	private void calcul(){
 		if(operateur.equals("+")){
