@@ -13,6 +13,7 @@ import java.awt.Font;
 import java.awt.GridBagLayout;
 
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 
 public abstract class InterfaceApplication extends JPanel {
@@ -35,32 +36,38 @@ public abstract class InterfaceApplication extends JPanel {
 		
 		this.NomPanel = NomPanel ;
 		this.couleurPan = couleurPan ;
+		this.setBorder(new EmptyBorder(0,0,0,0));
 		
 		//ajout du panel titre
 		add(titreP, BorderLayout.NORTH) ;
 		titreP.setBackground(couleurPan);
-		titreP.setPreferredSize(new Dimension(480, 40));
+		titreP.setPreferredSize(new Dimension(480, 50));
 		titreP.add(texteP) ;
-		
-		//Parametre texte
-		texteP.setOpaque(false);
-		texteP.setPreferredSize(new Dimension(480, 22));
-		texteP.add(titre, BorderLayout.CENTER);
 		
 		//Parametre du titre
 		titre.setForeground(Color.WHITE);
 		titre.setFont(police18);
 		titre.setHorizontalAlignment(JLabel.CENTER);
+		titre.setText(NomPanel);
 				
+		//Parametre texte
+		texteP.setOpaque(false);
+		texteP.setPreferredSize(new Dimension(480, 22));
+		texteP.add(titre, BorderLayout.CENTER);
+			
 		//Parametre des boutons
 		texteP.add(boutonPanel1, BorderLayout.EAST) ;
 		boutonPanel1.setOpaque(false);
-		boutonPanel1.setPreferredSize(new Dimension(64, 22));
+		boutonPanel1.setPreferredSize(new Dimension(60, 60));
 		
 		texteP.add(boutonPanel2, BorderLayout.WEST);
 		boutonPanel2.setOpaque(false);
-		boutonPanel2.setPreferredSize(new Dimension(64, 22));
+		boutonPanel2.setPreferredSize(new Dimension(60, 60));
 		
+	}
+
+	public JPanel getTitreP() {
+		return titreP;
 	}
 	
 }
