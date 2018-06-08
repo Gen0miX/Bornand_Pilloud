@@ -1,7 +1,7 @@
 /*
 * MaFenetre.java
 * Auteur : Jonas Pilloud
-* Date de création : 25 mai 2018
+* Date de crÃ©ation : 25 mai 2018
 */
 
 package Vue;
@@ -36,18 +36,20 @@ import java.util.Calendar;
 
 public class FenetrePrincipale extends JFrame {
 	
-	//panel téléphone
+	//panel tÃ©lÃ©phone
 	private PanelImage panelTel = new PanelImage(new ImageIcon("photo/BG/formeSmartphone.png")) ;
 	// Panel principal
 	private Accueil panelPrinc = new Accueil(new ImageIcon("photo/BG/fondEcran.png"));
 	//Panel verrouillage
 	private PanelVerrouillage verrouPanel = new PanelVerrouillage();
-	// Panel de statut (réseau, heure, batterie)
+	// Panel de statut (rÃ©seau, heure, batterie)
 	private PanelStatus panelStatus = new PanelStatus();
 	
 	// Panel du bouton home
 	private JPanel homePanel = new JPanel();
-	
+
+	private GalerieApp galerie = new GalerieApp();
+
 	
 	private Calculatrice calculette = new Calculatrice() ;
 	
@@ -55,8 +57,10 @@ public class FenetrePrincipale extends JFrame {
 	private CardLayout cardLayout = new CardLayout();
 	private JPanel panelContenu = new JPanel(cardLayout);
 	
+
 	private GridBagConstraints c = new GridBagConstraints();
 	
+
 
 	//boutons
 	private BoutonBase home = new BoutonBase(new ImageIcon("photo/Icones/Bhome.png"));
@@ -92,6 +96,8 @@ public class FenetrePrincipale extends JFrame {
 		panelContenu.add(calculette, "Calculatrice");
 		panelPrinc.getCalculatrice().addActionListener(new ClickCalculator());
 		
+		panelContenu.add(galerie, "Galerie");
+		panelPrinc.getImageGal().addActionListener(new ClickGallery());
 			
 		// Panel du bouton home
 		panelTel.add(homePanel, BorderLayout.SOUTH);
@@ -179,5 +185,15 @@ public class FenetrePrincipale extends JFrame {
 			cardLayout.show(panelContenu, "Calculatrice");
 		}
 	}
+
+	class ClickGallery implements ActionListener 
+	{
+		@Override
+		public void actionPerformed(ActionEvent e) 
+		{
+			cardLayout.show(panelContenu, "Galerie");
+		}
+	}
+
 	
 }
