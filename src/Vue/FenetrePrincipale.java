@@ -106,7 +106,7 @@ public class FenetrePrincipale extends JFrame {
 		homePanel.add(home);
 		home.setBorderPainted(false);
 		home.setPreferredSize(new Dimension(50, 50));
-		home.addActionListener(new HomeClick());
+		home.addActionListener(new BHomeClick());
 				
 		// Panel de status
 		panelTel.add(panelStatus, BorderLayout.NORTH);
@@ -139,13 +139,13 @@ public class FenetrePrincipale extends JFrame {
 	
 	
 	
-	class HomeClick implements ActionListener 
+	class BHomeClick implements ActionListener 
 	{
 		@Override
 		public void actionPerformed(ActionEvent e) 
 		{
 			if (lock == false)
-				cardLayout.show(panelContenu, "MainPanel");
+				cardLayout.show(panelContenu, "PanelPrincipal");
 		}
 	}
 	
@@ -195,5 +195,4 @@ public class FenetrePrincipale extends JFrame {
 		}
 	}
 
-	
 }

@@ -24,7 +24,7 @@ public class GalerieApp extends JPanel{
 
 	public GalerieApp() {
 		setLayout(new BorderLayout());
-		add(new PanelListApplication("Image Gallery", new Color(0,200,109)), BorderLayout.NORTH) ;
+		add(new PanelListApplication("Image Gallery", new Color(0,200,109,200)), BorderLayout.NORTH) ;
 		add(new CentreGalerie(), BorderLayout.CENTER);
 		setVisible(true) ;
 	}
