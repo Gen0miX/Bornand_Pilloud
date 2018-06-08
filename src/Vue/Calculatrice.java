@@ -28,7 +28,7 @@ public class Calculatrice extends JPanel {
 	private JPanel container = new JPanel();
 	//Tableau stockant les elements a  afficher dans la calculatrice
 	String[] tab_string = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", ".", "C", "+", "-", "*", "/", "="};
-	//Un bouton par element Ã  afficher
+	//Un bouton par element a  afficher
 	JButton[] tab_button = new JButton[tab_string.length];
 	private JLabel ecran = new JLabel();
 	private Dimension dim = new Dimension(130,50 );
