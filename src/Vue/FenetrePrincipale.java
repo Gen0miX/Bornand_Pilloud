@@ -47,8 +47,9 @@ public class FenetrePrincipale extends JFrame {
 	
 	// Panel du bouton home
 	private JPanel homePanel = new JPanel();
-	
+
 	private GalerieApp galerie = new GalerieApp();
+
 	
 	private Calculatrice calculette = new Calculatrice() ;
 	
@@ -56,6 +57,10 @@ public class FenetrePrincipale extends JFrame {
 	private CardLayout cardLayout = new CardLayout();
 	private JPanel panelContenu = new JPanel(cardLayout);
 	
+
+	private GridBagConstraints c = new GridBagConstraints();
+	
+
 
 	//boutons
 	private BoutonBase home = new BoutonBase(new ImageIcon("photo/Icones/Bhome.png"));
@@ -180,6 +185,7 @@ public class FenetrePrincipale extends JFrame {
 			cardLayout.show(panelContenu, "Calculatrice");
 		}
 	}
+
 	class ClickGallery implements ActionListener 
 	{
 		@Override
@@ -188,4 +194,5 @@ public class FenetrePrincipale extends JFrame {
 			cardLayout.show(panelContenu, "Galerie");
 		}
 	}
+
 }

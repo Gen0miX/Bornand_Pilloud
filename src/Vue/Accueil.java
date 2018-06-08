@@ -1,7 +1,9 @@
 /*
  * Accueil.java
  * Auteur : Jonas Pilloud
- * Date de cr√©ation : 2 juin 2018
+<<<<<<< HEAD
+ * Date de crÈation : 2 juin 2018
+
  */
 
 package Vue;
