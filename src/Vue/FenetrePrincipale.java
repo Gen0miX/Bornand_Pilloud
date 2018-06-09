@@ -25,6 +25,7 @@ import Gui.BoutonBase;
 import Gui.PanelImage;
 import Gui.PanelStatus;
 import Gui.PanelVerrouillage;
+import Vue.GalerieApp;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -163,7 +164,7 @@ public class FenetrePrincipale extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) 
 		{
-//			photoApp.serializeObject();
+			galerie.serializeObject();
 //			contactApp.serializeObject();
 			dispose();
 			System.exit(0);
