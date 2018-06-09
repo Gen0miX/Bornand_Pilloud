@@ -9,8 +9,10 @@ package Vue;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -30,6 +32,7 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -56,12 +59,17 @@ public class GalerieApp extends JPanel{
 	
 
 	public GalerieApp() {
+		
+		
 		setLayout(new BorderLayout());
 //		add(new TopGalerie(), BorderLayout.NORTH) ;
 		centreGalerie = new CentreGalerie();
 		add(centreGalerie, BorderLayout.CENTER);
+		add(new TopGalerie(), BorderLayout.NORTH);
 		setVisible(true) ;
 		
+		scroll =  new JScrollPane(centrePan, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS ,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER) ;
+		add(scroll);
 	}
 
 
@@ -72,34 +80,33 @@ public class GalerieApp extends JPanel{
 			deSerializeObject();
 			
 			centrePan = this ;
-			this.setLayout(new BorderLayout());
-			this.setBackground(Color.GRAY.brighter());
+			this.setLayout(new FlowLayout());
+			this.setOpaque(false);
+//			this.setBackground(Color.GRAY.brighter());
 			centrecentrePane = new CentreCentreGalerie();
-			
+			this.add(centrecentrePane);
 			
 			affichePhotos();
 			
-			scroll =  new JScrollPane() ;
-			scroll.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.BLACK));
-			
-			this.add(new TopGalerie(), BorderLayout.NORTH);
-			this.add(scroll, BorderLayout.WEST) ;
-			this.add(centrecentrePane, BorderLayout.CENTER);
-			
+//			scroll =  new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS ,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER) ;
+////			scroll.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.BLACK));
+//			scroll.setWheelScrollingEnabled(true);
+//			add(scroll) ;
 		}	
 	}
 	
 	class CentreCentreGalerie extends JPanel{
 		
-		private FlowLayout flow = new FlowLayout();
+		private GridLayout grid = new GridLayout(0, 3, 7, 7);
 		
 		public CentreCentreGalerie() {
 			centrecentrePane = this ;
-			flow.setAlignment(FlowLayout.LEFT);
-			flow.setHgap(12);
-			this.setBackground(Color.GRAY.brighter());
-			this.setLayout(flow);
-			setVisible(true);
+//			flow.setAlignment(FlowLayout.LEFT);
+			this.setAlignmentX(CENTER_ALIGNMENT);
+			this.setOpaque(true);
+			this.setLayout(grid);
+//			this.setBackground(Color.GRAY);
+			
 			
 		}
 	}
