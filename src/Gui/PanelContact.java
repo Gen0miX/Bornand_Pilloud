@@ -22,6 +22,6 @@ public class PanelContact extends JPanel{
 	private JLabel adresse = new JLabel("Adresse");
 	private JLabel mail = new JLabel("Mail");
 	
-	private BoutonBase delete = new BoutonBase(new ImageIcon("photo/Icones/supprimer.png"),480, 40, new Color());
+	private BoutonBase delete = new BoutonBase(new ImageIcon("photo/Icones/supprimer.png"),480, 40, new Color(222, 44, 60));
 	
 }
