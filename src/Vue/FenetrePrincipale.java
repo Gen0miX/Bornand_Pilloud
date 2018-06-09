@@ -81,6 +81,7 @@ public class FenetrePrincipale extends JFrame {
 		setUndecorated(true); // Ne pas afficher les boutons de la frame
 		setBackground(new Color(0, 0, 0, 0)); // Fond transparent Rouge,Bleu,Vert,Opacite
 		
+		
 		setContentPane(panelTel);
 		panelTel.setOpaque(false);
 		panelTel.setLayout(new BorderLayout());
