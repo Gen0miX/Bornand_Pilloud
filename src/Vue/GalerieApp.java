@@ -276,13 +276,5 @@ public class GalerieApp extends JPanel{
 				}
 			}
 		}
-	 
-	 class BoutonImage extends BoutonBase {
-		 
-		 public BoutonImage(ImageIcon image, int width, int height) {
-			
-		 }
-		 
-	 }
 
 }
