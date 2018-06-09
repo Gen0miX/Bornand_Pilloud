@@ -197,7 +197,7 @@ public class GalerieApp extends JPanel{
 			}
 		}
 	 
-	 
+	 //méthode d'ajout d'image
 	 private void addImage(Images img)
 		{
 			imgall.add(img);
