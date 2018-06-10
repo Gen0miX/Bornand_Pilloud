@@ -17,6 +17,8 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -37,8 +39,11 @@ import javax.swing.JScrollPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import Gui.AppModifImage;
 import Gui.BoutonBase;
 import Gui.PanelListApplication;
+import Gui.PanelModifApplication;
+
 
 
 
@@ -55,43 +60,69 @@ public class GalerieApp extends JPanel{
 	private JFileChooser choix = new JFileChooser();
 	private FileFilter imagesFilter = new FileNameExtensionFilter("Images", "jpg", "png", "gif", "jpeg");
 	
-	private CentreGalerie centreGalerie ;
+	private CardLayout cardLayoutPhoto = new CardLayout();
+	private JPanel contenuPanelPhoto = new JPanel(cardLayoutPhoto);
+	
+	private Galerie photoGalerie ;
 	
 
 	public GalerieApp() {
 		
-		
+		photoGalerie = new Galerie();
 		setLayout(new BorderLayout());
-//		add(new TopGalerie(), BorderLayout.NORTH) ;
-		centreGalerie = new CentreGalerie();
-		add(centreGalerie, BorderLayout.CENTER);
-		add(new TopGalerie(), BorderLayout.NORTH);
-		setVisible(true) ;
+		add(contenuPanelPhoto);
+		contenuPanelPhoto.add(photoGalerie, "Galerie");
+		cardLayoutPhoto.show(contenuPanelPhoto, "Galerie");
 		
-		scroll =  new JScrollPane(centrePan, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS ,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER) ;
-		add(scroll);
+		
+//		setLayout(new BorderLayout());
+//		centreGalerie = new CentreGalerie();
+//		topGalerie = new TopGalerie();
+//		add(centreGalerie, BorderLayout.CENTER);
+//		add(topGalerie, BorderLayout.NORTH);
+//		setVisible(true) ;
+//		
+//		scroll =  new JScrollPane(centrePan, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED ,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER) ;
+//		add(scroll);
 	}
 
 
+	class Galerie extends JPanel {
+		
+		private CentreGalerie centreGalerie ;
+		private TopGalerie topGalerie ;
+		
+		public Galerie() {
+			setLayout(new BorderLayout());
+			centreGalerie = new CentreGalerie();
+			topGalerie = new TopGalerie();
+			add(centreGalerie, BorderLayout.CENTER);
+			add(topGalerie, BorderLayout.NORTH);
+			setVisible(true) ;
+			
+			scroll =  new JScrollPane(centrePan, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED ,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER) ;
+			add(scroll);
+		}
+		public void update() 
+		{
+		 	centrecentrePane.removeAll();
+			affichePhotos();
+			centrecentrePane.updateUI();
+		}
+	}
+	
 	 class CentreGalerie extends JPanel {
 	
 		public CentreGalerie(){
 			
 			deSerializeObject();
-			
 			centrePan = this ;
 			this.setLayout(new FlowLayout());
 			this.setOpaque(false);
-//			this.setBackground(Color.GRAY.brighter());
 			centrecentrePane = new CentreCentreGalerie();
 			this.add(centrecentrePane);
 			
 			affichePhotos();
-			
-//			scroll =  new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS ,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER) ;
-////			scroll.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 0, Color.BLACK));
-//			scroll.setWheelScrollingEnabled(true);
-//			add(scroll) ;
 		}	
 	}
 	
@@ -101,13 +132,9 @@ public class GalerieApp extends JPanel{
 		
 		public CentreCentreGalerie() {
 			centrecentrePane = this ;
-//			flow.setAlignment(FlowLayout.LEFT);
 			this.setAlignmentX(CENTER_ALIGNMENT);
 			this.setOpaque(true);
 			this.setLayout(grid);
-//			this.setBackground(Color.GRAY);
-			
-			
 		}
 	}
 	 
@@ -159,13 +186,183 @@ public class GalerieApp extends JPanel{
 					choix.setApproveButtonText("Ajouter");
 					choix.addChoosableFileFilter(imagesFilter);
 					choix.setAcceptAllFileFilterUsed(false);
-					choix.setFileFilter(imagesFilter);
-					
+					choix.setFileFilter(imagesFilter);	
 				}
 				
 			}
 			
 		}
+	 
+	 class ImageGrand extends AppModifImage {
+		
+		private Images image ;
+		
+		private BoutonBase photoAgrandie;
+		private BoutonBase gauche = new BoutonBase(new ImageIcon("photo/Icones/gauche.png"));
+		private BoutonBase droite = new BoutonBase(new ImageIcon("photo/Icones/droite.png"));
+		private BoutonBase supprim = new BoutonBase(new ImageIcon("photo/Icones/supprimer.png"), 480, 40, new Color(0,200,109,150));
+		
+		private boolean isedit = false ;
+		
+		public ImageGrand(Images image) {
+			super("Image", new Color(0,200,109,150));
+			this.image = image ;
+//			this.setLayout(new BorderLayout());
+			
+			photoAgrandie = new BoutonBase(image.getThumbnailFull());
+			photoAgrandie.setBackground(Color.BLACK.brighter());
+			add(photoAgrandie, BorderLayout.CENTER);
+			createPanel();
+		}
+		
+		private void createPanel() {
+			photoAgrandie.add(gauche, BorderLayout.WEST);
+			gauche.setEnabled(false);
+			
+			photoAgrandie.add(droite, BorderLayout.EAST);
+			droite.setEnabled(false);
+			
+			gauche.addActionListener(new GaucheClick());
+			droite.addActionListener(new DroiteClick());
+			
+			gauche.addMouseListener(new ArrowHover());
+			droite.addMouseListener(new ArrowHover());
+			
+			supprim.addActionListener(new SupprimClick());
+			
+			super.getAnnuler().addActionListener(new AnnulClick());
+			super.getModifier().addActionListener(new ModifClick());
+			super.getRetour().addActionListener(new RetourClick());
+			
+			
+		}
+		
+		class ModifClick implements ActionListener 
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				isedit = true;
+				photoAgrandie.add(supprim, BorderLayout.SOUTH);
+				edit();
+				updateUI();
+			}
+		}
+		
+		class AnnulClick implements ActionListener 
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				isedit = false;
+				photoAgrandie.remove(supprim);
+				cancel();
+				updateUI();
+			}
+		}
+		
+		private class DroiteClick implements ActionListener 
+		{
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				int nextPhoto = imgall.indexOf(image) + 1;
+				
+				if (isedit)
+					return;
+				if (nextPhoto > imgall.size() - 1)
+				{
+					cardLayoutPhoto.show(contenuPanelPhoto, "0");
+					return;
+				}
+				cardLayoutPhoto.show(contenuPanelPhoto, "" + nextPhoto);
+			}
+		}
+		
+		 private class GaucheClick implements ActionListener 
+			{
+				@Override
+				public void actionPerformed(ActionEvent e) 
+				{
+					int previousPhoto = imgall.indexOf(image) - 1;
+					
+					if (isedit)
+						return;
+					if (previousPhoto < 0) 
+					{
+						cardLayoutPhoto.show(contenuPanelPhoto, "" + (imgall.size() - 1));
+						return;
+					}
+					cardLayoutPhoto.show(contenuPanelPhoto, "" + previousPhoto);
+				}
+			}
+		 
+		 private class ArrowHover extends MouseAdapter 
+			{
+				@Override
+				public void mouseEntered(MouseEvent e) 
+				{
+					if (isedit)
+						return;
+					if (e.getSource() == gauche)
+						gauche.setEnabled(true);
+					if (e.getSource() == droite)
+						droite.setEnabled(true);
+				}
+				
+				@Override
+				public void mouseExited(MouseEvent e) 
+				{
+					if (isedit)
+						return;
+					if (e.getSource() == gauche)
+						gauche.setEnabled(false);
+					if (e.getSource() == droite)
+						droite.setEnabled(false);
+				}
+			}
+		 
+		 class RetourClick implements ActionListener 
+			{
+				@Override
+				public void actionPerformed(ActionEvent e) 
+				{
+					cardLayoutPhoto.show(contenuPanelPhoto, "Galery");
+				}
+			}
+		 
+		 class SupprimClick implements ActionListener 
+			{
+				@Override
+				public void actionPerformed(ActionEvent arg0) 
+				{
+					File fileToDelete = new File(image.getUrl());
+					fileToDelete.delete();
+					removeImage(image);
+					photoGalerie.update();
+					cardLayoutPhoto.show(contenuPanelPhoto, "Galery");
+				}
+			}
+
+	 }
+	 
+	 
+	 class PhotoClick implements ActionListener
+		{
+			private Images img;
+
+			public PhotoClick(Images img) 
+			{
+				this.img = img;
+			}
+
+			@Override
+			public void actionPerformed(ActionEvent e) 
+			{
+				cardLayoutPhoto.show(contenuPanelPhoto, "" + imgall.indexOf(this.img));
+			}
+		}
+	 
 	 
 	 public void serializeObject() 
 		{
@@ -204,6 +401,11 @@ public class GalerieApp extends JPanel{
 			}
 		}
 	 
+	 private void removeImage(Images img)
+		{
+			imgall.remove(img);
+		}
+	 
 	 //méthode d'ajout d'image
 	 private void addImage(Images img)
 		{
@@ -212,23 +414,20 @@ public class GalerieApp extends JPanel{
 	 
 	 public void affichePhotos()
 		{
+		 	ImageGrand imageGrand ;
 			BoutonBase vignette;
+			
 			for (Images img : imgall) 
 			{
 				vignette = new BoutonBase(img.getThumbnail143143(), 143, 143);
-//				vignette.addActionListener(new PhotoClick(photo));
+				vignette.addActionListener(new PhotoClick(img));
 				centrecentrePane.add(vignette);
-//				photoDetail = new PhotoDetail(photo);
-//				contentPanelPhoto.add(photoDetail, "" + photos.indexOf(photo));
+				imageGrand = new ImageGrand(img);
+				contenuPanelPhoto.add(imageGrand, "" + imgall.indexOf(img));
 			}
 		}
 	 
-	 public void update() 
-		{
-		 	centrecentrePane.removeAll();
-			affichePhotos();
-			centrecentrePane.updateUI();
-		}
+	 
 	 
 	 private int getNextId()
 		{
@@ -283,5 +482,10 @@ public class GalerieApp extends JPanel{
 				}
 			}
 		}
-
+	 public void update() 
+		{
+		 	centrecentrePane.removeAll();
+			affichePhotos();
+			centrecentrePane.updateUI();
+		}
 }
