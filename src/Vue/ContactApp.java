@@ -518,7 +518,7 @@ public class ContactApp extends JPanel {
 		private JPanel gridPanel = new JPanel(new GridLayout(0, 3, 7, 7));
 		private JPanel photoListe = new JPanel();
 		private JScrollPane scrollPane = new JScrollPane(photoListe);
-		private ArrayList<Images> image;
+		private ArrayList<Images> imgall;
 		private ContactModify contactModify;
 		private Contact contact;
 
@@ -550,7 +550,7 @@ public class ContactApp extends JPanel {
 		//A FINIR
 		public void paintPanel()
 		{
-			image = fenPrincipale.getGalerieApp().getPhotos();
+			imgall = fenPrincipale.getGalerieApp().getImgall();
 			photoListe.setLayout(new FlowLayout());
 			photoListe.add(gridPanel);
 			gridPanel.setAlignmentX(CENTER_ALIGNMENT);
@@ -569,7 +569,7 @@ public class ContactApp extends JPanel {
 		public void affichePhotos() 
 		{
 			BoutonBase vignette;
-			for (Photo photo : photos) 
+			for (Images photo : imgall) 
 			{
 				vignette = new BoutonBase(photo.getThumbnail143143(), 143, 143);
 				vignette.addActionListener(new PhotoClick(photo));
@@ -600,9 +600,9 @@ public class ContactApp extends JPanel {
 		 */
 
 		class PhotoClick implements ActionListener {
-			private Photo photo;
+			private Images photo;
 
-			public PhotoClick(Photo photo) 
+			public PhotoClick(Images photo) 
 			{
 				this.photo = photo;
 			}
