@@ -24,8 +24,8 @@ public class PanelAjout extends InterfaceApplication {
 
 	/**
 	 * Constructeur des entêtes d'ajout
-	 * @param PANELNAME
-	 * @param COLORPANEL
+	 * @param NomPanel
+	 * @param couleurPan
 	 */
 	public PanelAjout(String NomPanel, Color couleurPan)
 	{

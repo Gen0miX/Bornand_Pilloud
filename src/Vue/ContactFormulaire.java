@@ -229,7 +229,7 @@ public class ContactFormulaire extends JPanel {
 		return contact;
 	}
 	/**
-	 * Méthode qui retourne le nouveau contact
+	 * Méthode qui retourne un nouveau contact
 	 * @param id
 	 * @return nouveau contact
 	 */

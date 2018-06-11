@@ -23,7 +23,7 @@ import javax.swing.JButton;
 		private JButton empty = new BoutonBase();
 
 		/**
-		 * Constructeur des panels widgets
+		 * Constructeur des panels widget
 		 * @param NomPanel
 		 * @param couleurPan
 		 */

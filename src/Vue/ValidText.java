@@ -16,7 +16,7 @@ public class ValidText {
 
 
 		/**
-		 * Méthode qui controle si textfield est vide ou pas
+		 * Méthode qui controle si le textfield est vide ou pas
 		 * @param textField
 		 * @return
 		 */

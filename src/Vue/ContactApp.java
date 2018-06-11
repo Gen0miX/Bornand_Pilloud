@@ -547,6 +547,7 @@ public class ContactApp extends JPanel {
 		 * Dessine le panel
 		 */
 
+		//A FINIR
 		public void paintPanel()
 		{
 			image = fenPrincipale.getGalerieApp().getPhotos();
