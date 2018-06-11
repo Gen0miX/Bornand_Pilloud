@@ -117,6 +117,9 @@ public class FenetrePrincipale extends JFrame {
 	}
 	
 	
+	
+
+
 	class UnlockClick implements ActionListener 
 	{
 		@Override
@@ -139,7 +142,15 @@ public class FenetrePrincipale extends JFrame {
 	}
 	
 	
-	
+	//TEST
+	public GalerieApp getGalerieApp() {
+		return galerie;
+	}
+
+
+
+
+
 	class BHomeClick implements ActionListener 
 	{
 		@Override
