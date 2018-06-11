@@ -106,7 +106,6 @@ public class GalerieApp extends JPanel{
 	
 		public CentreGalerie(){
 			
-//			deSerializeObject();
 			centrePan = this ;
 			this.setLayout(new FlowLayout());
 			this.setOpaque(false);
