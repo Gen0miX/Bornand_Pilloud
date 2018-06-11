@@ -140,7 +140,7 @@ public class ContactApp extends JPanel {
 
 	/**
 	 * @author Mathias
-	 * @return l'id du prochain contact après ajout
+	 * @return l'id du prochain contact après ajout.
 	 */
 	private int getNextId()
 	{
