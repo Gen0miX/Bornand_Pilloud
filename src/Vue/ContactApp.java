@@ -569,7 +569,8 @@ public class ContactApp extends JPanel {
 		public void affichePhotos() 
 		{
 			BoutonBase vignette;
-			for (Photo photo : photos) 
+			//for (Photo photo : photos) 
+			for (Images photo : image)
 			{
 				vignette = new BoutonBase(photo.getThumbnail143143(), 143, 143);
 				vignette.addActionListener(new PhotoClick(photo));
@@ -600,9 +601,9 @@ public class ContactApp extends JPanel {
 		 */
 
 		class PhotoClick implements ActionListener {
-			private Photo photo;
+			private Images photo;
 
-			public PhotoClick(Photo photo) 
+			public PhotoClick(Images photo) 
 			{
 				this.photo = photo;
 			}
