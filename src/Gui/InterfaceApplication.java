@@ -69,5 +69,8 @@ public abstract class InterfaceApplication extends JPanel {
 	public JPanel getTitreP() {
 		return titreP;
 	}
+	public JPanel getTexteP() {
+		return texteP;
+	}
 	
 }

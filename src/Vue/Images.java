@@ -58,7 +58,7 @@ public class Images implements Serializable {
 
 		this.width = image.getWidth();
 		this.height = image.getHeight();
-		this.thumbnailFull = scaledImage(480, 860);
+		this.thumbnailFull = scaledImage(480, 690);
 		this.thumbnail143143 = cropedImage(143, 143);
 		this.thumbnail480300 = cropedImage(480, 300);
 		this.thumbnail480480 = cropedImage(480, 480);

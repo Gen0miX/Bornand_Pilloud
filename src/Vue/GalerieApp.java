@@ -93,6 +93,7 @@ public class GalerieApp extends JPanel{
 		private TopGalerie topGalerie ;
 		
 		public Galerie() {
+			deSerializeObject();
 			setLayout(new BorderLayout());
 			centreGalerie = new CentreGalerie();
 			topGalerie = new TopGalerie();
@@ -115,7 +116,7 @@ public class GalerieApp extends JPanel{
 	
 		public CentreGalerie(){
 			
-			deSerializeObject();
+//			deSerializeObject();
 			centrePan = this ;
 			this.setLayout(new FlowLayout());
 			this.setOpaque(false);
@@ -202,20 +203,25 @@ public class GalerieApp extends JPanel{
 		private BoutonBase droite = new BoutonBase(new ImageIcon("photo/Icones/droite.png"));
 		private BoutonBase supprim = new BoutonBase(new ImageIcon("photo/Icones/supprimer.png"), 480, 40, new Color(0,200,109,150));
 		
+		private JPanel frame = new JPanel(new BorderLayout());
+		
 		private boolean isedit = false ;
 		
 		public ImageGrand(Images image) {
 			super("Image", new Color(0,200,109,150));
 			this.image = image ;
-//			this.setLayout(new BorderLayout());
-			
+
+			this.setOpaque(false);
 			photoAgrandie = new BoutonBase(image.getThumbnailFull());
 			photoAgrandie.setBackground(Color.BLACK.brighter());
-			add(photoAgrandie, BorderLayout.CENTER);
+			photoAgrandie.setPreferredSize(new Dimension(455, 675));
+			add(photoAgrandie);
+			
 			createPanel();
 		}
 		
 		private void createPanel() {
+			
 			photoAgrandie.add(gauche, BorderLayout.WEST);
 			gauche.setEnabled(false);
 			
@@ -327,7 +333,7 @@ public class GalerieApp extends JPanel{
 				@Override
 				public void actionPerformed(ActionEvent e) 
 				{
-					cardLayoutPhoto.show(contenuPanelPhoto, "Galery");
+					cardLayoutPhoto.show(contenuPanelPhoto, "Galerie");
 				}
 			}
 		 
@@ -340,7 +346,7 @@ public class GalerieApp extends JPanel{
 					fileToDelete.delete();
 					removeImage(image);
 					photoGalerie.update();
-					cardLayoutPhoto.show(contenuPanelPhoto, "Galery");
+					cardLayoutPhoto.show(contenuPanelPhoto, "Galerie");
 				}
 			}
 

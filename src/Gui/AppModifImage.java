@@ -6,10 +6,12 @@
 
 package Gui;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JPanel;
 
 
 public class AppModifImage extends InterfaceApplication {
@@ -23,6 +25,8 @@ public class AppModifImage extends InterfaceApplication {
 
 		private ImageIcon imgCancel = new ImageIcon("photo/Icones/annuler.png");
 		private JButton cancel = new BoutonBase(imgCancel);
+	
+		private JPanel imageGrand = new JPanel(new BorderLayout());
 
 		/**
 		 * Constructeur des panels d'edition des photos
@@ -35,6 +39,7 @@ public class AppModifImage extends InterfaceApplication {
 			boutonPanel1.add(modify);
 			boutonPanel2.add(back);
 			setBackground(new Color(162,222,208));
+			this.add(imageGrand) ;
 		}
 
 		/**
@@ -88,6 +93,10 @@ public class AppModifImage extends InterfaceApplication {
 		public void setBack(JButton back) 
 		{
 			this.back = back;
+		}
+
+		public JPanel getImageGrand() {
+			return imageGrand;
 		}
 
 	
