@@ -569,6 +569,7 @@ public class ContactApp extends JPanel {
 		public void affichePhotos() 
 		{
 			BoutonBase vignette;
+
 			for (Images photo : imgall) 
 			{
 				vignette = new BoutonBase(photo.getThumbnail143143(), 143, 143);
