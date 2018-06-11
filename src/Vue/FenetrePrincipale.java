@@ -26,6 +26,7 @@ import Gui.PanelImage;
 import Gui.PanelStatus;
 import Gui.PanelVerrouillage;
 import Vue.GalerieApp;
+import Vue.ContactApp;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -51,6 +52,7 @@ public class FenetrePrincipale extends JFrame {
 
 	private GalerieApp galerie = new GalerieApp();
 
+	private ContactApp contact = new ContactApp(this);
 	
 	private Calculatrice calculette = new Calculatrice() ;
 	
@@ -100,6 +102,9 @@ public class FenetrePrincipale extends JFrame {
 		
 		panelContenu.add(galerie, "Galerie");
 		panelPrinc.getImageGal().addActionListener(new ClickGallery());
+		
+		panelContenu.add(contact, "ContactApp");
+		panelPrinc.getContact().addActionListener(new ClickContact());
 			
 		// Panel du bouton home
 		panelTel.add(homePanel, BorderLayout.SOUTH);
@@ -177,7 +182,7 @@ public class FenetrePrincipale extends JFrame {
 		public void actionPerformed(ActionEvent e) 
 		{
 			galerie.serializeObject();
-//			contactApp.serializeObject();
+			contact.serializeObject();
 			dispose();
 			System.exit(0);
 		}

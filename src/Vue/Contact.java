@@ -20,8 +20,8 @@ public class Contact implements Serializable {
 	private String adresse;
 	private String mail;
 	private Images photo;
-	private ImageIcon profileImage = new ImageIcon("image/icons/photoprofile.png");
-	private ImageIcon miniature = new ImageIcon("image/icons/contactprofile.png");
+	private ImageIcon profileImage = new ImageIcon("photo/Icones/ContactGrand.png");
+	private ImageIcon miniature = new ImageIcon("photo/Icones/ContactPetit.png");
 	
 	/**
 	 Constructeur de contact 

@@ -16,10 +16,10 @@ import javax.swing.JButton;
 
 public class PanelAjout extends InterfaceApplication {
 	
-	private ImageIcon imgSave = new ImageIcon("image/icons/save.png");
+	private ImageIcon imgSave = new ImageIcon("photo/Icones/sauvegarder.png");
 	private JButton save = new BoutonBase(imgSave);
 
-	private ImageIcon imgCancel = new ImageIcon("image/icons/cancel.png");
+	private ImageIcon imgCancel = new ImageIcon("photo/Icones/annuler.png");
 	private JButton cancel = new BoutonBase(imgCancel);
 
 	/**

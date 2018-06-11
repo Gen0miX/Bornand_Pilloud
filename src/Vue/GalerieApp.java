@@ -78,11 +78,6 @@ public class GalerieApp extends JPanel{
 	}
 
 
-	public ArrayList<Images> getImgall() {
-		return imgall;
-	}
-
-
 	class Galerie extends JPanel {
 
 		private CentreGalerie centreGalerie ;
@@ -489,7 +484,7 @@ public class GalerieApp extends JPanel{
 		affichePhotos();
 		centrecentrePane.updateUI();
 	}
-	public ArrayList<Images> getPhotos() 
+	public ArrayList<Images> getImgall() 
 	{
 		return imgall;
 	}

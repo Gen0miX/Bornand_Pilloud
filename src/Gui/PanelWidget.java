@@ -18,7 +18,7 @@ import javax.swing.JButton;
 	public class PanelWidget extends InterfaceApplication {
 
 		// Boutons
-		private ImageIcon imgBack = new ImageIcon("image/icons/back.png");
+		private ImageIcon imgBack = new ImageIcon("photo/Icones/retour.png");
 		private JButton back = new BoutonBase(imgBack);
 		private JButton empty = new BoutonBase();
 

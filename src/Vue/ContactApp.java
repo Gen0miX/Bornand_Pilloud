@@ -72,7 +72,7 @@ public class ContactApp extends JPanel {
 	{
 		try 
 		{
-			FileOutputStream fichier = new FileOutputStream("serials/contacts.ser");
+			FileOutputStream fichier = new FileOutputStream("serialisation/contacts.ser");
 			ObjectOutputStream oos = new ObjectOutputStream(fichier);
 			oos.writeObject(contacts);
 			oos.flush();
@@ -93,7 +93,7 @@ public class ContactApp extends JPanel {
 	{
 		try 
 		{
-			FileInputStream fichier = new FileInputStream("serials/contacts.ser");
+			FileInputStream fichier = new FileInputStream("serialisation/contacts.ser");
 			ObjectInputStream ois = new ObjectInputStream(fichier);
 			contacts = (ArrayList<Contact>) ois.readObject();
 			ois.close();
@@ -281,7 +281,7 @@ public class ContactApp extends JPanel {
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
-				fenPrincipale.getCardLayout().show(fenPrincipale.getContentPanel(), "MainPanel");
+				fenPrincipale.getCardLayout().show(fenPrincipale.getContentPanel(), "PanelPrincipal");
 			}
 		}
 	}
