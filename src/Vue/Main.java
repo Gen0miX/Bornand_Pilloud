@@ -15,8 +15,6 @@ public class Main {
 		FenetrePrincipale maFenetrePrincipale = new FenetrePrincipale();
 		maFenetrePrincipale.setVisible(true);
 
-		Calculatrice calculette = new Calculatrice();
-
 	}
 
 }
