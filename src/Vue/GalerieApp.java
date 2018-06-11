@@ -67,23 +67,13 @@ public class GalerieApp extends JPanel{
 	
 
 	public GalerieApp() {
+		deSerializeObject();
 		
 		photoGalerie = new Galerie();
 		setLayout(new BorderLayout());
 		add(contenuPanelPhoto);
 		contenuPanelPhoto.add(photoGalerie, "Galerie");
 		cardLayoutPhoto.show(contenuPanelPhoto, "Galerie");
-		
-		
-//		setLayout(new BorderLayout());
-//		centreGalerie = new CentreGalerie();
-//		topGalerie = new TopGalerie();
-//		add(centreGalerie, BorderLayout.CENTER);
-//		add(topGalerie, BorderLayout.NORTH);
-//		setVisible(true) ;
-//		
-//		scroll =  new JScrollPane(centrePan, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED ,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER) ;
-//		add(scroll);
 	}
 
 
@@ -93,7 +83,6 @@ public class GalerieApp extends JPanel{
 		private TopGalerie topGalerie ;
 		
 		public Galerie() {
-			deSerializeObject();
 			setLayout(new BorderLayout());
 			centreGalerie = new CentreGalerie();
 			topGalerie = new TopGalerie();
@@ -104,12 +93,13 @@ public class GalerieApp extends JPanel{
 			scroll =  new JScrollPane(centrePan, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED ,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER) ;
 			add(scroll);
 		}
-		public void update() 
-		{
-		 	centrecentrePane.removeAll();
-			affichePhotos();
-			centrecentrePane.updateUI();
-		}
+		
+		 public void update() 
+			{
+			 	centrecentrePane.removeAll();
+				affichePhotos();
+				centrecentrePane.updateUI();
+			}
 	}
 	
 	 class CentreGalerie extends JPanel {
@@ -349,7 +339,7 @@ public class GalerieApp extends JPanel{
 					cardLayoutPhoto.show(contenuPanelPhoto, "Galerie");
 				}
 			}
-
+		 
 	 }
 	 
 	 
