@@ -68,9 +68,10 @@ public class GalerieApp extends JPanel{
 
 	public GalerieApp() {
 		deSerializeObject();
-
+		
 		photoGalerie = new Galerie();
 		setLayout(new BorderLayout());
+		
 		add(contenuPanelPhoto);
 		contenuPanelPhoto.add(photoGalerie, "Galerie");
 		cardLayoutPhoto.show(contenuPanelPhoto, "Galerie");
@@ -108,7 +109,7 @@ public class GalerieApp extends JPanel{
 
 			centrePan = this ;
 			this.setLayout(new FlowLayout());
-			this.setOpaque(false);
+			this.setBackground(new Color(168,247,171));
 			centrecentrePane = new CentreCentreGalerie();
 			this.add(centrecentrePane);
 
@@ -123,8 +124,8 @@ public class GalerieApp extends JPanel{
 		public CentreCentreGalerie() {
 			centrecentrePane = this ;
 			this.setAlignmentX(CENTER_ALIGNMENT);
-			this.setOpaque(true);
 			this.setLayout(grid);
+			this.setBackground(new Color(168,247,171));
 		}
 	}
 
@@ -147,7 +148,7 @@ public class GalerieApp extends JPanel{
 				flow.setHgap(40);
 
 				this.setLayout(flow);
-				this.setBackground(new Color(0,200,109,150));
+				this.setBackground(new Color(11,11,11));
 
 				JLabel gal = new JLabel("Galerie") ;
 				gal.setFont(pol);
@@ -166,7 +167,7 @@ public class GalerieApp extends JPanel{
 				flow.setHgap(40);
 
 				this.setLayout(flow);
-				this.setBackground(new Color(0,200,109,150));
+				this.setBackground(new Color(11,11,11));
 
 				BoutonBase ajout = new BoutonBase(new ImageIcon("photo/Icones/ajout.png"));
 				this.add(ajout);
@@ -190,17 +191,16 @@ public class GalerieApp extends JPanel{
 		private BoutonBase photoAgrandie;
 		private BoutonBase gauche = new BoutonBase(new ImageIcon("photo/Icones/gauche.png"));
 		private BoutonBase droite = new BoutonBase(new ImageIcon("photo/Icones/droite.png"));
-		private BoutonBase supprim = new BoutonBase(new ImageIcon("photo/Icones/supprimer.png"), 480, 40, new Color(0,200,109,150));
+		private BoutonBase supprim = new BoutonBase(new ImageIcon("photo/Icones/supprimer.png"), 480, 40, new Color(11,11,11));
 
 		private JPanel frame = new JPanel(new BorderLayout());
 
 		private boolean isedit = false ;
 
 		public ImageGrand(Images image) {
-			super("Image", new Color(0,200,109,150));
+			super("Image", new Color(11,11,11));
 			this.image = image ;
-
-			this.setOpaque(false);
+			this.setBackground(new Color(168,247,171));
 			photoAgrandie = new BoutonBase(image.getThumbnailFull());
 			photoAgrandie.setBackground(Color.BLACK.brighter());
 			photoAgrandie.setPreferredSize(new Dimension(455, 675));

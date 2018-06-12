@@ -250,11 +250,11 @@ public class ContactApp extends JPanel {
 		 */
 		public ContactList() 
 		{
-			this.setBackground(new Color(98,215,162));
+			this.setBackground(new Color(168,247,171));
 //			add(new TopContact(), BorderLayout.BEFORE_FIRST_LINE);
 			//BoxLayout permet d'afficher uniquement le scrollpane en cas de besoin
 			panelListe.setLayout(new BoxLayout(panelListe, BoxLayout.Y_AXIS));
-			panelListe.setBackground(new Color(98,215,162));
+			//panelListe.setOpaque(true);
 	
 			
 			
