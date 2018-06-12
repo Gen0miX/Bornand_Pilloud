@@ -375,7 +375,7 @@ public class ContactApp extends JPanel {
 		public ContactModify(Contact contact) 
 		{
 			super("Modifier un contact", Color.BLACK);
-			this.setBackground(new Color(98,215,162));
+			this.setBackground(new Color(168,247,171));
 			this.contact = contact;
 			this.formulaire = new ContactFormulaire(contact, false);
 			add(formulaire);
@@ -513,7 +513,7 @@ public class ContactApp extends JPanel {
 		public ContactAdd() 
 		{
 			super("Ajouter un contact", Color.BLACK);
-			this.setBackground(new Color(98,215,162));
+			this.setBackground(new Color(168,247,171));
 			this.formulaire = new ContactFormulaire(true);
 			add(formulaire);
 			formulaire.AddPhotoClick(new PhotoClick());
@@ -614,7 +614,8 @@ public class ContactApp extends JPanel {
 		public ContactPhoto() 
 		{
 			
-			super("choisir une photo", Color.CYAN.darker());
+			super("choisir une photo",new Color(11,11,11));
+			this.setBackground(new Color(168,247,171));
 			paintPanel();
 		}
 		/**
@@ -638,6 +639,7 @@ public class ContactApp extends JPanel {
 		{
 			imgall = fenPrincipale.getGalerieApp().getImgall();
 			photoListe.setLayout(new FlowLayout());
+			photoListe.setBackground(new Color(168,247,171));
 			photoListe.add(gridPanel);
 			gridPanel.setAlignmentX(CENTER_ALIGNMENT);
 			gridPanel.setOpaque(false);

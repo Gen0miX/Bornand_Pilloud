@@ -36,7 +36,7 @@ public abstract class InterfaceApplication extends JPanel {
 		
 		this.NomPanel = NomPanel ;
 		this.couleurPan = couleurPan ;
-		this.setBorder(new EmptyBorder(0,0,0,0));
+		//this.setBorder(new EmptyBorder(0,0,0,0));
 		
 		//ajout du panel titre
 		add(titreP, BorderLayout.NORTH) ;

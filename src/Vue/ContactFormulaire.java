@@ -94,7 +94,7 @@ public class ContactFormulaire extends JPanel {
 	private void paintPanel() 
 	{
 		this.setLayout(new BorderLayout());
-		this.setBackground(new Color(98,215,162));
+		this.setBackground(new Color(168,247,171));
 		
 		tnom = new TextBase(editable, Color.WHITE, Color.BLACK);
 		tprenom = new TextBase(editable, Color.WHITE, Color.BLACK);
@@ -118,7 +118,7 @@ public class ContactFormulaire extends JPanel {
 		gridPanel.setOpaque(true);
 		topPanel.setOpaque(false);
 		formulairePanel.setOpaque(false);
-		gridPanel.setBackground(new Color(162,222,208)); // créer sa propre couleur
+		gridPanel.setBackground(new Color(168,247,171)); // créer sa propre couleur
 		
 		gridLayout.setHgap(10);
 		
