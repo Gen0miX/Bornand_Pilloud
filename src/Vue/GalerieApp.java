@@ -41,7 +41,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import Gui.AppModifImage;
 import Gui.BoutonBase;
-import Gui.PanelListApplication;
 import Gui.PanelModifApplication;
 
 

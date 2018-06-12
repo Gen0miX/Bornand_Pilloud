@@ -10,8 +10,12 @@ package Vue;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.MenuContainer;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileInputStream;
@@ -24,15 +28,20 @@ import java.util.Collections;
 import java.util.Comparator;
 
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import Gui.BoutonBase;
 import Gui.PanelAjout;
-import Gui.PanelListApplication;
 import Gui.PanelModifApplication;
 import Gui.PanelWidget;
+
+import Vue.GalerieApp.AddClick;
+import Vue.GalerieApp.TopGalerie.TopGalerieL;
+import Vue.GalerieApp.TopGalerie.TopGalerieR;
 
 
 
@@ -43,7 +52,10 @@ public class ContactApp extends JPanel {
 
 	private CardLayout cardLayoutContact = new CardLayout();
 	private JPanel contentPanelContact = new JPanel(cardLayoutContact);
-
+	private BorderLayout topPanel = new BorderLayout();
+	
+	private TopContact top = new TopContact();
+	
 	private ContactList contactList;
 	private ContactModify contactModify;
 	private ContactAdd contactAdd;
@@ -53,12 +65,13 @@ public class ContactApp extends JPanel {
 	 * @author Mathias
 	 * @param fenPrincipale
 	 */
-	public ContactApp(FenetrePrincipale mainFrame) 
+	public ContactApp(FenetrePrincipale fenPrincipale) 
 	{
 		this.fenPrincipale = fenPrincipale;
 		deSerializeObject();
 		contactList = new ContactList();
-		setLayout(new BorderLayout());
+		setLayout(topPanel);
+		add(top, BorderLayout.NORTH);
 		add(contentPanelContact);
 		contentPanelContact.add(contactList, "ListeContact");
 		cardLayoutContact.show(contentPanelContact, "ListeContact");
@@ -148,32 +161,104 @@ public class ContactApp extends JPanel {
 			return 0;
 		return contacts.get(contacts.size()-1).getID()+1;
 	}
+	
+	class TopContact extends JPanel{
+		private BorderLayout border = new BorderLayout();
+		
+		public TopContact() {
+			border.setVgap(0);
+			this.setPreferredSize(new Dimension(480, 50));
+			this.setLayout(border);
+			this.add(new TopContactL(), BorderLayout.CENTER);
+			this.add(new TopContactR(), BorderLayout.EAST);
+		}
+
+		class TopContactL extends JPanel{
+
+			private Font pol = new Font("Arial", Font.BOLD, 25);
+
+			public TopContactL() {
+
+				FlowLayout flow = new FlowLayout();
+				flow.setAlignment(FlowLayout.LEFT);
+				flow.setVgap(10);
+				flow.setHgap(40);
+
+				this.setLayout(flow);
+				this.setBackground(new Color(11,11,11));
+
+				JLabel con = new JLabel("Contacts") ;
+				con.setFont(pol);
+				con.setForeground(Color.WHITE);
+				this.add(con);
+			}
+		}
+
+		class TopContactR extends JPanel{
+
+			public TopContactR() {
+
+				FlowLayout flow = new FlowLayout();
+				flow.setAlignment(FlowLayout.LEFT);
+				flow.setVgap(10);
+				flow.setHgap(40);
+
+				this.setLayout(flow);
+				this.setBackground(new Color(11,11,11));
+
+				BoutonBase ajout = new BoutonBase(new ImageIcon("photo/Icones/ajoutCon.png"));
+				this.add(ajout);
+				ajout.addActionListener(new AddClick());
+			}
+
+		}
+		
+		/**
+		 * Listener après le click sur ajouter un contact
+		 * @author Mathias
+		 *
+		 */
+
+		class AddClick implements ActionListener 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
+				if(contactAdd != null) 
+					contentPanelContact.remove(contactAdd);
+				
+				fenPrincipale.getContact().remove(top);
+				contactAdd = new ContactAdd();
+				contentPanelContact.add(contactAdd,"AddContact");
+				cardLayoutContact.show(contentPanelContact, "AddContact");
+			}
+		}
+
+	}
 
 	/**
 	 * Liste des contacts
 	 * @author Mathias
 	 *
 	 */
-	class ContactList extends PanelListApplication {
+	class ContactList extends JPanel {
 		private JPanel panelListe = new JPanel();
 		private JScrollPane scrollPane = new JScrollPane(panelListe);
-
+		private JPanel contactListe = new JPanel(new BorderLayout());
 		/**
 		 * Constructeur de la liste des contacts
 		 * @author Mathias
 		 */
 		public ContactList() 
 		{
-			super("contact", Color.CYAN.darker());
-
+			this.setBackground(new Color(98,215,162));
+//			add(new TopContact(), BorderLayout.BEFORE_FIRST_LINE);
 			//BoxLayout permet d'afficher uniquement le scrollpane en cas de besoin
 			panelListe.setLayout(new BoxLayout(panelListe, BoxLayout.Y_AXIS));
-			panelListe.setBackground(new Color(162,222,208));
-
+			panelListe.setBackground(new Color(98,215,162));
+	
+			
+			
 			afficheContacts();
-
-			super.getAjout().addActionListener(new AddClick());
-			super.getRetour().addActionListener(new BackClick());
 
 
 			//Suppression des bordures automatiques du scrollpane
@@ -239,7 +324,7 @@ public class ContactApp extends JPanel {
 		 *
 		 */
 
-		class ContactClick implements ActionListener 
+		class ContactClick implements ActionListener
 		{
 			Contact contact;
 
@@ -250,40 +335,25 @@ public class ContactApp extends JPanel {
 
 			public void actionPerformed(ActionEvent e) 
 			{
+				fenPrincipale.getContact().remove(top);
 				cardLayoutContact.show(contentPanelContact, "" + contact.getID());
 			}
 		}
-		/**
-		 * Listener après le click sur ajouter un contact
-		 * @author Mathias
-		 *
-		 */
-
-		class AddClick implements ActionListener 
-		{
-			public void actionPerformed(ActionEvent e) 
-			{
-				if(contactAdd != null)
-					contentPanelContact.remove(contactAdd);
-
-				contactAdd = new ContactAdd();
-				contentPanelContact.add(contactAdd,"AddContact");
-				cardLayoutContact.show(contentPanelContact, "AddContact");
-			}
-		}
+		
 
 		/**
 		 * Listener après le click sur retour
 		 * @author Mathias
 		 *
 		 */
-		class BackClick implements ActionListener 
-		{
-			public void actionPerformed(ActionEvent e) 
-			{
-				fenPrincipale.getCardLayout().show(fenPrincipale.getContentPanel(), "PanelPrincipal");
-			}
-		}
+//		class BackClick implements ActionListener 
+//		{
+//			public void actionPerformed(ActionEvent e) 
+//			{
+//				fenPrincipale.getCardLayout().show(fenPrincipale.getContentPanel(), "PanelPrincipal");
+//			}
+//		}
+	
 	}
 	/**
 	 * Panel de modification d'un contact
@@ -304,7 +374,8 @@ public class ContactApp extends JPanel {
 		 */
 		public ContactModify(Contact contact) 
 		{
-			super("Modifier un contact", Color.CYAN.darker());
+			super("Modifier un contact", Color.BLACK);
+			this.setBackground(new Color(98,215,162));
 			this.contact = contact;
 			this.formulaire = new ContactFormulaire(contact, false);
 			add(formulaire);
@@ -336,7 +407,9 @@ public class ContactApp extends JPanel {
 			public void actionPerformed(ActionEvent e) 
 			{
 				contactList.update();
+				fenPrincipale.getContact().add(top,BorderLayout.NORTH);
 				cardLayoutContact.show(contentPanelContact, "ListeContact");
+				
 			}
 		}
 		/**
@@ -351,6 +424,7 @@ public class ContactApp extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				formulaire.changeEditable();
 				editFlag = true;
+				fenPrincipale.getContact().add(formulaire.getDelete(),BorderLayout.AFTER_LAST_LINE);
 				getRetour().setEnabled(false);
 				edit();
 			}
@@ -372,6 +446,7 @@ public class ContactApp extends JPanel {
 					modifyContact(formulaire.getModifiedContact());
 					editFlag = false;
 					getRetour().setEnabled(true);
+					fenPrincipale.getContact().remove(formulaire.getDelete());
 					requestFocusInWindow();
 					save();
 					contactList.update();
@@ -380,7 +455,6 @@ public class ContactApp extends JPanel {
 		}
 		/**
 		 * Listener cliquer sur supprimer un contact
-		 * @author Mathias
 		 *
 		 */
 
@@ -391,6 +465,7 @@ public class ContactApp extends JPanel {
 			{
 				removeContact(contact);
 				contactList.update();
+				fenPrincipale.getContact().add(top,BorderLayout.NORTH);
 				cardLayoutContact.show(contentPanelContact, "ListeContact");
 
 			}
@@ -411,9 +486,13 @@ public class ContactApp extends JPanel {
 				if (editFlag) {
 					contactPhoto = new ContactPhoto(ContactModify.this, contact);
 					contentPanelContact.add(contactPhoto, "PhotoContact");
+					fenPrincipale.getContact().remove(formulaire.getDelete());
 					cardLayoutContact.show(contentPanelContact, "PhotoContact");
 				}
 			}
+		}
+		public ContactFormulaire getFormulaire() {
+			return formulaire;
 		}
 	}
 	/**
@@ -433,8 +512,8 @@ public class ContactApp extends JPanel {
 		 */
 		public ContactAdd() 
 		{
-			super("Ajouter un contact", Color.CYAN.darker());
-
+			super("Ajouter un contact", Color.BLACK);
+			this.setBackground(new Color(98,215,162));
 			this.formulaire = new ContactFormulaire(true);
 			add(formulaire);
 			formulaire.AddPhotoClick(new PhotoClick());
@@ -468,6 +547,8 @@ public class ContactApp extends JPanel {
 					addContact(formulaire.getNewContact(id));
 					formulaire.resetTextField();
 					contactList.update();
+					fenPrincipale.getContact().add(top,BorderLayout.NORTH);
+					fenPrincipale.getContact().remove(formulaire.getDelete());
 					cardLayoutContact.show(contentPanelContact, "ListeContact");
 					return;
 				}
@@ -484,7 +565,11 @@ public class ContactApp extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) 
 			{
+				fenPrincipale.getContact().add(top,BorderLayout.NORTH);
+				cardLayoutContact.removeLayoutComponent(contactAdd);
+//				fenPrincipale.getContact().remove(formulaire.getDelete());
 				cardLayoutContact.show(contentPanelContact, "ListeContact");
+				
 
 			}
 		}
@@ -504,6 +589,7 @@ public class ContactApp extends JPanel {
 
 				contactPhoto = new ContactPhoto();
 				contentPanelContact.add(contactPhoto, "PhotoContact");
+				fenPrincipale.getContact().remove(formulaire.getDelete());
 				cardLayoutContact.show(contentPanelContact, "PhotoContact");
 			}
 		}
@@ -547,7 +633,7 @@ public class ContactApp extends JPanel {
 		 * Dessine le panel
 		 */
 
-		//A FINIR
+		
 		public void paintPanel()
 		{
 			imgall = fenPrincipale.getGalerieApp().getImgall();
@@ -587,9 +673,13 @@ public class ContactApp extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (contact != null)
+				if (contact != null) {
+					fenPrincipale.getContact().add(contactModify.getFormulaire().getDelete(),BorderLayout.AFTER_LAST_LINE);
 					cardLayoutContact.show(contentPanelContact, ""+contact.getID());
-
+					}
+					
+					
+				
 				cardLayoutContact.show(contentPanelContact, "AddContact");
 			}
 

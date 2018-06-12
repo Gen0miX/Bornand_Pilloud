@@ -74,6 +74,10 @@ public class FenetrePrincipale extends JFrame {
 	
 	
 
+	public ContactApp getContact() {
+			return contact;
+		}
+
 	public FenetrePrincipale() {
 		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);

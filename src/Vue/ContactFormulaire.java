@@ -40,12 +40,14 @@ public class ContactFormulaire extends JPanel {
 	private TextBase tadresse;
 	private TextBase tmail;
 
-	private BoutonBase delete = new BoutonBase(new ImageIcon("image/icons/bin.png"), 480, 40, new Color(222, 44, 60));
+	private BoutonBase delete = new BoutonBase(new ImageIcon("photo/Icones/supprimer.png"), 480, 40, new Color(11, 11, 11));
 
+	private GridLayout gridLayout = new GridLayout(5, 2, 10, 10) ;
+	
 	private FlowLayout flowLayout = new FlowLayout();
 	private JPanel gridPanel = new JPanel(flowLayout);
 	private JPanel topPanel = new JPanel(new BorderLayout());
-	private JPanel formulairePanel = new JPanel(new GridLayout(5, 2, 10, 10));
+	private JPanel formulairePanel = new JPanel(gridLayout);
 	private JPanel bottomPanel = new JPanel(new GridLayout(1, 1, 10, 10));
 
 	private Dimension dimension = new Dimension(400, 200); // dimension des panels et textfield
@@ -64,7 +66,7 @@ public class ContactFormulaire extends JPanel {
 	public ContactFormulaire(boolean editable) 
 	{
 		this.editable = editable;
-		this.profilePhoto = new BoutonBase(new ImageIcon("image/icons/photoprofile.png"), 480, 300);
+		this.profilePhoto = new BoutonBase(new ImageIcon("photo/Icones/ContactGrand.png"), 480, 300);
 		paintPanel();
 	}
 	/**
@@ -83,7 +85,7 @@ public class ContactFormulaire extends JPanel {
 		gridPanel.add(bottomPanel);
 		bottomPanel.setPreferredSize(new Dimension(400, 60));
 		bottomPanel.setBorder(new EmptyBorder(20, 0, 0, 0));
-		bottomPanel.setOpaque(false);
+//		bottomPanel.setOpaque(false);
 	}
 	/**
 	 * Méthode de dessin du panel
@@ -91,31 +93,35 @@ public class ContactFormulaire extends JPanel {
 
 	private void paintPanel() 
 	{
-		setLayout(new BorderLayout());
-		setOpaque(false);
-
+		this.setLayout(new BorderLayout());
+		this.setBackground(new Color(98,215,162));
+		
 		tnom = new TextBase(editable, Color.WHITE, Color.BLACK);
 		tprenom = new TextBase(editable, Color.WHITE, Color.BLACK);
 		tphone = new TextBase(editable, Color.WHITE, Color.BLACK);
 		tadresse = new TextBase(editable, Color.WHITE, Color.BLACK);
 		tmail = new TextBase(editable, Color.WHITE, Color.BLACK);
 
-		add(gridPanel);
-		gridPanel.add(topPanel);
-
-		flowLayout.setVgap(0);
+//		add(gridPanel);
+//		bottomPanel.add(delete);
+		this.add(topPanel, BorderLayout.NORTH);
+//		this.add(bottomPanel, BorderLayout.SOUTH);
+		
+		flowLayout.setHgap(0);
 		topPanel.setBorder(new EmptyBorder(0, 0, 20, 0));
 		topPanel.setPreferredSize(new Dimension(480, 300));
 		topPanel.add(profilePhoto);
 
-		gridPanel.add(formulairePanel);
+		this.add(formulairePanel, BorderLayout.CENTER );
 		formulairePanel.setPreferredSize(dimension);
-
+		
 		gridPanel.setOpaque(true);
 		topPanel.setOpaque(false);
 		formulairePanel.setOpaque(false);
 		gridPanel.setBackground(new Color(162,222,208)); // créer sa propre couleur
-
+		
+		gridLayout.setHgap(10);
+		
 		formulairePanel.add(prenom);
 		prenom.setFont(font22);
 		prenom.setForeground(Color.WHITE);
@@ -255,6 +261,9 @@ public class ContactFormulaire extends JPanel {
 		profilePhoto = new BoutonBase(image.getThumbnail480300(), 480, 300);
 		topPanel.add(profilePhoto);
 		updateUI();
+	}
+	public BoutonBase getDelete() {
+		return delete;
 	}
 	/**
 	 * Listener sur le clique d'ajout d'une photo
